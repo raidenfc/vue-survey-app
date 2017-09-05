@@ -1,0 +1,354 @@
+/************
+通用
+***************/
+// img
+.imagesIcon(@xy){
+  background: url(http://himg2.huanqiu.com/survey/base_img.png) no-repeat @xy;
+}
+
+// 过渡效果
+.transitionDuration(@s){
+  transition: @s ease;
+  -webkit-transition: @s ease;
+  -ms-transition: @s ease;
+  -moz-transition: @s ease;
+}
+
+// 透明度
+.opacity(@z){
+    opacity: @z / 100; filter: alpha(opacity=@z);
+}
+
+// 省略号
+.omit(){
+  display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+// ui-table
+.ui-table {
+  width: 100%;
+
+  th {
+    height: 30px; line-height: 30px; border-bottom: 2px solid #ccc; font-size: 12px; color: #b2b2b2; font-weight: normal; text-align: left;
+  }
+
+  td {
+    height: 50px; line-height: 50px; border-bottom: 1px solid #e6e6e6; background: #fff;
+  }
+
+  tr {
+
+    &:hover {
+
+      td {
+        background: #fbf9f4; .transitionDuration(.1s);
+      }
+    }
+  }
+}
+
+// 翻页
+.paginator-control {
+  position: relative;
+
+  .paginator-data {
+    position: absolute; left: 0; top: 0; z-index: 1; line-height: 32px; font-size: 12px;
+
+    var {
+      margin: 0 5px; color: #cc0000;
+    }
+  }
+
+  .paginator-inner {
+    position: relative; margin: 40px 0; font-size: 12px; text-align: right;
+
+    .total-pages {
+      margin: 0 10px;
+    }
+
+    .go-to {
+
+      input {
+        display: inline-block; width: 28px; height: 28px; border: 1px solid #ccc; border-radius: 4px; text-align: center;
+      }
+    }
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      display: inline-block; margin: 1px; padding: 0 11px; border-image: initial; border-radius: 4px; background-color: #f6f6f6; color: #4c4c4c; line-height: 30px; text-decoration: initial;
+
+      &:hover {
+        background-color: #e6e6e6;
+      }
+
+      &.disabled { 
+        color: gainsboro; cursor: default; 
+
+        &:hover {
+          background-color: #f6f6f6; color: gainsboro;
+        }
+      }
+
+      &.current { 
+        background-color: #387fd8; color: #fff;
+      }
+    }
+  }
+}
+
+// 按钮
+.btn-style(@width: 60px , @height: 25px , @bg: #91ce66 , @color: #fff){
+    display: inline-block; width: @width; height: @height; line-height: @height; text-align: center; font-size: 14px; color: @color; background-color: @bg; border-radius: 3px; cursor: pointer;
+}
+
+// 弹窗
+.popup {
+  position: relative;
+
+  .popup-inner {
+      position: fixed; top: 50%; left: 50%; z-index: 101; margin: -80px 0 0 -120px; padding: 2px; width: 236px; height: 156px; background-color: #fff; border: 1px solid #c0c0c0; 
+  
+      .text {
+        padding-top: 45px; font-size: 16px; color: #4c4c4c; font-weight: bold; text-align: center;
+      }
+
+      .top-line {
+        height: 5px; background: #ffba00;
+      }
+
+      .close {
+        position: absolute; right: 10px; top: 15px; display: block; width: 11px; height: 11px; cursor: pointer; .imagesIcon(-66px -18px);
+      }
+
+      .btn {
+        position: relative; padding-top: 35px; text-align: center;
+
+        .define {
+          .btn-style(60px,25px);
+        }
+
+        .cancel {
+          .btn-style(60px,25px,#f7faf5,#808080);
+        }
+      }
+
+      // 弹窗动画
+      &.ui_animated {
+        -webkit-animation-fill-mode: both; -moz-animation-fill-mode: both; -o-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-duration: 0.4s; -moz-animation-duration: 0.4s; -o-animation-duration: 0.4s; animation-duration: 0.4s; 
+      }
+
+      &.ui_fadeInUp { 
+        -webkit-animation-name: fadeInUp; -moz-animation-name: fadeInUp; -o-animation-name: fadeInUp;  animation-name: fadeInUp; 
+      }
+
+      &.ui_fadeOutDown {  
+        -webkit-animation-name: fadeOutDown;  -moz-animation-name: fadeOutDown;  -o-animation-name: fadeOutDown; animation-name: fadeOutDown;
+      }
+  }
+
+  .bg {
+    position: fixed; top: 0; left: 0; z-index: 100; width: 100%; height: 100%; background: #fff; opacity: .4; filter: alpha(opacity=40); 
+  }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutDown {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(10px); }
+}
+
+// from
+.ui-text,
+.ui-textarea {
+  display: inline-block;
+
+  input,
+  textarea {
+    width: 100%; border: 1px solid #ccc; border-radius: 3px; box-sizing: border-box; .transitionDuration(.2s); font-size: 14px;
+    
+    &:hover {
+      border: 1px solid #8cd5ff;
+    }
+
+    &:focus {
+      border: 1px solid #00a2ff; box-shadow: 0 0 6px 0 rgba(0, 162, 255, 0.4); 
+    }
+  }
+
+  input {
+    padding: 0 10px; height: 32px; line-height: 32px;
+  }
+
+  textarea {
+    padding: 10px; height: 24px; line-height: 24px;
+  }
+
+  &.error {
+
+    input,
+    textarea {
+      border-color: #ff0000; box-shadow: 0 0 6px 0 rgba(255, 0, 0, 0.25); 
+    }
+  }
+}
+
+.ui-input-tit {
+  margin-bottom: 15px;
+
+  .title {
+    display: inline-block; width: 40px;
+  }
+
+  .con {
+    display: inline-block; position: relative; 
+
+    .error-tips {
+      display: none; margin-left: 10px; font-size: 12px; color: #ff0000;
+    }
+
+    input {
+      width: 500px;
+    }
+  }
+
+  &.error {
+
+    .con {
+
+      .error-tips {
+        display: inherit;
+      }
+
+      input {
+        border-color: #ff0000; box-shadow: 0 0 6px 0 rgba(255, 0, 0, 0.25); 
+      }
+    }
+  }
+}
+
+.ui-switch {
+  position: relative; display: inline-block; width: 38px; height: 19px; border: 1px solid #5993e4; border-radius: 10px; cursor: pointer; .transitionDuration(.3s);
+
+  .sw {
+    position: absolute; left: 2px; top: 2px; display: inline-block; width: 15px; height: 15px; border-radius: 50%; background-color: #5993e4; .transitionDuration(.2s);
+  }
+
+  &.off {
+    border-color: #ccc;
+
+    .sw {
+      left: 21px; background-color: #ccc;
+    }
+  }
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+.ui-select {
+  padding: 4px 8px; border-color: #ccc; color: #4c4c4c; font-size: 14px; border-radius: 3px;
+}
+
+.ui-tit-input {
+  display: inline-block; padding: 2px; border: 1px solid #ccc; border-radius: 3px; font-size: 12px;
+
+  .t {
+    display: inline-block; width: 68px; line-height: 18px; border-right: 1px solid #ccc; text-align: center; vertical-align: middle;
+  }
+
+  input {
+    display: inline-block; padding: 0 10px; width: 322px; height: 26px; line-height: 26px; border: 1px solid #fff; vertical-align: middle;
+
+    &:focus {
+      border: 1px solid #00a2ff; box-shadow: 0 0 6px 0 rgba(0, 162, 255, 0.4); 
+    }
+  }
+}
+
+.ui-radio {
+  display: inline-block; line-height: 18px; cursor: pointer;
+
+  .icon {
+     position: relative; display: inline-block; margin-right: 5px; width: 16px; height: 16px; border: 1px solid #d8e1e5; border-radius: 50%; vertical-align: middle; .transitionDuration(.2s);
+
+     s {
+      position: absolute; left: 50%; top: 50%; display: block; margin: -4px 0 0 -4px; width: 8px; height: 8px; background-color: #f1f1f1; border-radius: 50%; overflow: hidden; .transitionDuration(.2s);
+     }
+  }
+
+  &.select {
+
+    .icon {
+      border-color: #5993e4;
+
+      s {
+        background-color: #277ce6;
+      }
+    }
+  }
+
+  &:hover {
+
+    .icon {
+      background-color: #f8f8f8;
+    }
+  }
+}
+
+.ui-date {
+  display: inline-block; position: relative; margin-bottom: 5px; padding: 4px; border: 1px solid #ccc; border-radius: 3px; font-size: 12px;
+
+  .t {
+    display: inline-block; width: 68px; line-height: 18px; border-right: 1px solid #ccc; text-align: center; vertical-align: middle;
+  }
+
+  input {
+    display: inline-block; padding: 0 30px 0 10px; width: 145px; height: 26px; line-height: 26px; border: 1px solid #fff; vertical-align: middle;
+  }
+
+  .icon {
+    position: absolute; right: 6px; top: 50%; margin-top: -10px; width: 22px; height: 20px; .imagesIcon(-314px -14px);
+  }
+}
+
+.ui-checkbox {
+  display: inline-block; line-height: 16px; cursor: pointer;
+
+  .icon {
+     position: relative; display: inline-block; margin-right: 5px; width: 14px; height: 14px; border: 1px solid #5993e4; background-color: #fff; vertical-align: middle; .transitionDuration(.2s);
+
+     s {
+      position: absolute; left: 0; top: 0; display: block; width: 14px; height: 14px;
+     }
+  }
+
+  &.select {
+
+    .icon {
+
+      s {
+        .imagesIcon(-352px -18px);
+      }
+    }
+  }
+
+  &:hover {
+
+    .icon {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+
+
+
+
+
+
